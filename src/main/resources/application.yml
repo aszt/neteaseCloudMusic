@@ -3,7 +3,8 @@ server:
 # 请求路径
 neteaseMusic:
   baseUrl: "http://music.163.com/"
-  topList: "/weapi/v3/playlist/detail"
-  songUrl: "/weapi/song/enhance/player/url"
-#  lyric: "/weapi/song/media"
-  lyric: "/weapi/song/lyric"
+  topList: "weapi/v3/playlist/detail"
+  songUrl: "weapi/song/enhance/player/url"
+  lyric: "weapi/song/lyric"
+  songDetail: "weapi/v3/song/detail"
+  album: "weapi/v1/album"

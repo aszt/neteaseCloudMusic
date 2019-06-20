@@ -17,7 +17,16 @@ public class MusicProperties {
     @Value("${neteaseMusic.songUrl}")
     public String SONGURL;
 
+    // 获取歌词
     @Value("${neteaseMusic.lyric}")
     public String LYRIC;
+
+    // 获取歌曲详情
+    @Value("${neteaseMusic.songDetail}")
+    public String SONGDETAIL;
+
+    // 获取专辑内容
+    @Value("${neteaseMusic.album}")
+    public String ALBUM;
 
 }

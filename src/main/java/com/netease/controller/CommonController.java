@@ -48,4 +48,30 @@ public class CommonController {
         }
         return null;
     }
+
+    @ApiOperation(value = "获取歌曲详情", notes = " 传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
+    @ApiImplicitParam(name = "ids", value = "音乐 id", required = true, dataType = "String", paramType = "query")
+    @PostMapping("songDetail")
+    public String songDetail(@RequestParam("ids") String ids) {
+        try {
+            String list = commonService.songDetail(ids);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation(value = "获取专辑内容", notes = " 传入专辑 id, 可获得专辑内容,例如：79130968-孤身")
+    @ApiImplicitParam(name = "id", value = "专辑 id", required = true, dataType = "String", paramType = "query")
+    @PostMapping("album")
+    public String album(@RequestParam("id") String id) {
+        try {
+            String list = commonService.album(id);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

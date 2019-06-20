@@ -41,4 +41,30 @@ public class CommonService {
         System.out.println(list);
         return list;
     }
+
+    public String songDetail(String ids) throws Exception {
+        String url = MP.BASEURL + MP.SONGDETAIL;
+        UrlParam up = Api.songDetail(url, ids);
+        System.out.println("urlParam:" + up.toString());
+        String params = up.getParams().toJSONString();
+        System.out.println("params:" + params);
+        HashMap<String, String> data = NewMusicEncrypt.getData(params);
+        System.out.println("data:" + data);
+        String list = SendRequest.send(url, data);
+        System.out.println(list);
+        return list;
+    }
+
+    public String album(String id) throws Exception {
+        String url = MP.BASEURL + MP.ALBUM+"/"+id;
+        UrlParam up = Api.album(url, id);
+        System.out.println("urlParam:" + up.toString());
+        String params = up.getParams().toJSONString();
+        System.out.println("params:" + params);
+        HashMap<String, String> data = NewMusicEncrypt.getData(params);
+        System.out.println("data:" + data);
+        String list = SendRequest.send(url, data);
+        System.out.println(list);
+        return list;
+    }
 }
