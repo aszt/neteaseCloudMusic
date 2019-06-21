@@ -19,13 +19,6 @@ public class TopListService {
     public String topList(String id, Integer n) throws Exception {
         String url = MP.BASEURL + MP.TOPLIST;
         UrlParam up = Api.topList(url, id, n);
-        System.out.println("urlParam:" + up.toString());
-        String params = up.getParams().toJSONString();
-        System.out.println("params:" + params);
-        HashMap<String, String> data = NewMusicEncrypt.getData(params);
-        System.out.println("data:" + data);
-        String list = SendRequest.send(url, data);
-        System.out.println(list);
-        return list;
+        return SendRequest.getMusicData(up);
     }
 }

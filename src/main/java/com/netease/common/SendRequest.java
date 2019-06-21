@@ -1,11 +1,24 @@
 package com.netease.common;
 
+import com.netease.bean.UrlParam;
+import com.netease.utils.NewMusicEncrypt;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.util.HashMap;
 
 public class SendRequest {
+
+    public static String getMusicData(UrlParam up) throws Exception {
+        String url = up.getUrl();
+        System.out.println("urlParam:" + up.toString());
+        String params = up.getParams().toJSONString();
+        System.out.println("params:" + params);
+        HashMap<String, String> data = NewMusicEncrypt.getData(params);
+        System.out.println("data:" + data);
+        String list = send(url, data);
+        return list;
+    }
 
     public static String send(String url, HashMap<String, String> Data) throws Exception {
         Connection.Response
