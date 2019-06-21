@@ -17,6 +17,7 @@ public class SendRequest {
         HashMap<String, String> data = NewMusicEncrypt.getData(params);
         System.out.println("data:" + data);
         String list = send(url, data);
+        System.out.println(list);
         return list;
     }
 

@@ -44,10 +44,18 @@ public class Api {
         return up;
     }
 
-    public static UrlParam album(String url, String id) {
+    public static UrlParam album(String url) {
         UrlParam up = new UrlParam();
         up.setUrl(url);
-//        up.addParam("id", id);
+        return up;
+    }
+
+    public static UrlParam commentMusic(String url, String id, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("rid", id);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
         return up;
     }
 }

@@ -29,4 +29,12 @@ public class MusicProperties {
     @Value("${neteaseMusic.album}")
     public String ALBUM;
 
+    // 歌曲评论
+    @Value("${neteaseMusic.commentMusic}")
+    public String COMMENTMUSIC;
+
+    // 热门评论
+    @Value("${neteaseMusic.commentHot}")
+    public String COMMENTHOT;
+
 }

@@ -74,4 +74,39 @@ public class CommonController {
         }
         return null;
     }
+
+    @ApiOperation(value = "歌曲评论", notes = " 传入音乐 id 和 limit 参数 , 可获得该音乐的15条热门评论及limit条最新评论,例如：1365393542-孤身")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "音乐 id", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "limit", value = "取出评论数量 , 默认为 20", required = false, dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "offset", value = "偏移数量 , 用于分页， 默认为 0", required = false, dataType = "int", paramType = "query")
+    })
+    @PostMapping("commentMusic")
+    public String commentMusic(@RequestParam("id") String id, @RequestParam(value = "limit", defaultValue = "20") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
+        try {
+            String list = commonService.commentMusic(id, limit, offset);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation(value = "热门评论", notes = "0-歌曲、1-mv、2-歌单、3-专辑、4-电台、5-视频，其它参数同歌曲评论")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type", value = "类型", required = true, dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "limit", value = "取出评论数量 , 默认为 20+1", required = false, dataType = "int", paramType = "query"),
+            @ApiImplicitParam(name = "offset", value = "偏移数量 , 用于分页， 默认为 0", required = false, dataType = "int", paramType = "query")
+    })
+    @PostMapping("commentHot")
+    public String commentHot(@RequestParam("type") Integer type, @RequestParam("id") String id, @RequestParam(value = "limit", defaultValue = "20") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
+        try {
+            String list = commonService.commentHot(type, id, limit, offset);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

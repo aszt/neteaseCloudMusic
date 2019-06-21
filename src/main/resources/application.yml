@@ -8,3 +8,5 @@ neteaseMusic:
   lyric: "weapi/song/lyric"
   songDetail: "weapi/v3/song/detail"
   album: "weapi/v1/album"
+  commentMusic: "weapi/v1/resource/comments/R_SO_4_"
+  commentHot: "weapi/v1/resource/hotcomments"
