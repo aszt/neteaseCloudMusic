@@ -80,4 +80,14 @@ public class Api {
 //        up.addParam("n", 1000);
         return up;
     }
+
+    public static UrlParam search(String url, String keywords, Integer type, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("s", keywords);
+        up.addParam("type", type);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+        return up;
+    }
 }

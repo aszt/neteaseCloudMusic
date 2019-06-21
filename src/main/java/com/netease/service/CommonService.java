@@ -71,4 +71,10 @@ public class CommonService {
         UrlParam up = Api.commentMusic(url, id, limit, offset);
         return SendRequest.getMusicData(up);
     }
+
+    public String search(String keywords, Integer type, Integer limit, Integer offset) throws Exception {
+        String url = MP.BASEURL + MP.SEARCH;
+        UrlParam up = Api.search(url, keywords, type, limit, offset);
+        return SendRequest.getMusicData(up);
+    }
 }

@@ -45,4 +45,8 @@ public class MusicProperties {
     @Value("${neteaseMusic.userPlayList}")
     public String USERPLAYLIST;
 
+    // 搜索
+    @Value("${neteaseMusic.search}")
+    public String SEARCH;
+
 }

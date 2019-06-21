@@ -12,3 +12,4 @@ neteaseMusic:
   commentHot: "weapi/v1/resource/hotcomments"
   recommendSongs: "weapi/v2/discovery/recommend/songs"
   userPlayList: "weapi/user/playlist"
+  search: "weapi/cloudsearch/get/web"
