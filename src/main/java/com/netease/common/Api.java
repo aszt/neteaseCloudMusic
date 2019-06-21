@@ -58,4 +58,26 @@ public class Api {
         up.addParam("offset", offset);
         return up;
     }
+
+    public static UrlParam recommendSongs(String url, String uid) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+//        up.addParam("uid", "259679147");
+        up.addParam("limit", 20);
+        up.addParam("offset", 0);
+        up.addParam("total", true);
+//        up.addParam("csrf_token", "eaba29ac3fb8730cde19b626d0ee4ed4");
+        return up;
+    }
+
+    public static UrlParam userPlayList(String url, String uid, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("uid", uid);
+//        up.addParam("total", true);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+//        up.addParam("n", 1000);
+        return up;
+    }
 }

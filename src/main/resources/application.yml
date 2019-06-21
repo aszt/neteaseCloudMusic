@@ -10,3 +10,5 @@ neteaseMusic:
   album: "weapi/v1/album"
   commentMusic: "weapi/v1/resource/comments/R_SO_4_"
   commentHot: "weapi/v1/resource/hotcomments"
+  recommendSongs: "weapi/v2/discovery/recommend/songs"
+  userPlayList: "weapi/user/playlist"

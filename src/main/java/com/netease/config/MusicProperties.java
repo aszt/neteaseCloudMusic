@@ -37,4 +37,12 @@ public class MusicProperties {
     @Value("${neteaseMusic.commentHot}")
     public String COMMENTHOT;
 
+    // 每日歌曲推荐
+    @Value("${neteaseMusic.recommendSongs}")
+    public String RECOMMENDSONGS;
+
+    // 用户歌单
+    @Value("${neteaseMusic.userPlayList}")
+    public String USERPLAYLIST;
+
 }
