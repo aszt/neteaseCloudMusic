@@ -49,4 +49,16 @@ public class MusicProperties {
     @Value("${neteaseMusic.search}")
     public String SEARCH;
 
+    // 手机号码登录
+    @Value("${neteaseMusic.loginCellphone}")
+    public String LOGINCELLPHONE;
+
+    // 邮箱登录
+    @Value("${neteaseMusic.login}")
+    public String LOGIN;
+
+    // 每日推荐歌单
+    @Value("${neteaseMusic.recommendResource}")
+    public String RECOMMENDRESOURCE;
+
 }

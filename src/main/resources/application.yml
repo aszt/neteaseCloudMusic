@@ -13,3 +13,6 @@ neteaseMusic:
   recommendSongs: "weapi/v2/discovery/recommend/songs"
   userPlayList: "weapi/user/playlist"
   search: "weapi/cloudsearch/get/web"
+  loginCellphone: "weapi/login/cellphone"
+  login: "weapi/login"
+  recommendResource: "weapi/v1/discovery/recommend/resource"

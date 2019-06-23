@@ -6,6 +6,7 @@ import com.netease.common.SendRequest;
 import com.netease.utils.JSSecret;
 import com.netease.utils.MusicEncrypt;
 import com.netease.utils.NewMusicEncrypt;
+import org.springframework.util.DigestUtils;
 
 import java.util.HashMap;
 
@@ -40,27 +41,18 @@ public class TopList {
 
     public static void main(String[] args) {
         try {
-            /*String id = "19723756";
-            String url = "http://music.163.com/weapi/v3/playlist/detail";
-            UrlParam upp = Api.topList(url, id, 10);
+            String phone = "tongchongyuan@163.com";
+            String password = "tongchongyuan88";
+            String secKey = DigestUtils.md5DigestAsHex(password.getBytes());
+            String url = "https://music.163.com/weapi/login";
+            UrlParam upp = Api.login(url, phone, secKey);
             System.out.println("UrlParamPair:" + upp.toString());
             String req_str = upp.getParams().toJSONString();
             System.out.println("req_str:" + req_str);
             HashMap<String, String> data = NewMusicEncrypt.getData(req_str);
-            String list = SendRequest.send(url, data);
-            System.out.println(list);*/
-
-            String id = "1365393542";
-//            String url = "http://music.163.com/weapi/song/media";
-            String url = "http://music.163.com/weapi/song/lyric";
-            UrlParam upp = Api.lyric(url, id);
-            System.out.println("UrlParamPair:" + upp.toString());
-            String req_str = upp.getParams().toJSONString();
-            System.out.println("req_str:" + req_str);
-            HashMap<String, String> data = NewMusicEncrypt.getData(req_str);
-            System.out.println(data);
             String list = SendRequest.send(url, data);
             System.out.println(list);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

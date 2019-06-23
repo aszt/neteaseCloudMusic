@@ -90,4 +90,22 @@ public class Api {
         up.addParam("offset", offset);
         return up;
     }
+
+    public static UrlParam loginCellphone(String url, String phone, String password) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("phone", phone);
+        up.addParam("password", password);
+        up.addParam("rememberLogin", "true");
+        return up;
+    }
+
+    public static UrlParam login(String url, String email, String password) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("username", email);
+        up.addParam("password", password);
+        up.addParam("rememberLogin", "true");
+        return up;
+    }
 }

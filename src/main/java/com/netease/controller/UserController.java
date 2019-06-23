@@ -17,12 +17,54 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "每日歌曲推荐（待改）", notes = "根据你的音乐口味生成，每天6:00更新")
+    @ApiOperation(value = "手机登录（有高频IP限制）", notes = "用于登录网易云音乐")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "phone", value = "手机号码", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query")
+    })
+    @PostMapping("loginCellphone")
+    public String loginCellphone(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+        try {
+            return userService.loginCellphone(phone, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation(value = "邮箱登录（Cookie问题待改）", notes = "用于登录网易云音乐")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query")
+    })
+    @PostMapping("login")
+    public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
+        try {
+            return userService.login(email, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation(value = "每日歌曲推荐( 需要登录 )", notes = "根据你的音乐口味生成，每天6:00更新")
     @ApiImplicitParam(name = "uid", value = "用户 id", required = true, dataType = "String", paramType = "query")
     @PostMapping("recommendSongs")
     public String recommendSongs(@RequestParam("uid") String uid) {
         try {
             String list = userService.recommendSongs(uid);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @ApiOperation(value = "每日推荐歌单( 需要登录 )", notes = "可获得每日推荐歌单")
+    @PostMapping("recommendResource")
+    public String recommendResource() {
+        try {
+            String list = userService.recommendResource();
             return list;
         } catch (Exception e) {
             e.printStackTrace();
