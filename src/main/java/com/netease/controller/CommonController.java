@@ -28,8 +28,7 @@ public class CommonController {
     @PostMapping("songUrl")
     public String songUrl(@RequestParam("ids") String ids, @RequestParam(value = "br", defaultValue = "999000") Integer br) {
         try {
-            String list = commonService.songUrl(ids, br);
-            return list;
+            return commonService.songUrl(ids, br);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,8 +40,7 @@ public class CommonController {
     @PostMapping("lyric")
     public String lyric(@RequestParam("id") String id) {
         try {
-            String list = commonService.lyric(id);
-            return list;
+            return commonService.lyric(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,8 +52,7 @@ public class CommonController {
     @PostMapping("songDetail")
     public String songDetail(@RequestParam("ids") String ids) {
         try {
-            String list = commonService.songDetail(ids);
-            return list;
+            return commonService.songDetail(ids);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,8 +64,7 @@ public class CommonController {
     @PostMapping("album")
     public String album(@RequestParam("id") String id) {
         try {
-            String list = commonService.album(id);
-            return list;
+            return commonService.album(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,8 +80,7 @@ public class CommonController {
     @PostMapping("commentMusic")
     public String commentMusic(@RequestParam("id") String id, @RequestParam(value = "limit", defaultValue = "20") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
         try {
-            String list = commonService.commentMusic(id, limit, offset);
-            return list;
+            return commonService.commentMusic(id, limit, offset);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,8 +97,7 @@ public class CommonController {
     @PostMapping("commentHot")
     public String commentHot(@RequestParam("type") Integer type, @RequestParam("id") String id, @RequestParam(value = "limit", defaultValue = "20") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
         try {
-            String list = commonService.commentHot(type, id, limit, offset);
-            return list;
+            return commonService.commentHot(type, id, limit, offset);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,8 +114,7 @@ public class CommonController {
     @PostMapping("search")
     public String search(@RequestParam("keywords") String keywords, @RequestParam(value = "type", defaultValue = "1") Integer type, @RequestParam(value = "limit", defaultValue = "30") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
         try {
-            String list = commonService.search(keywords, type, limit, offset);
-            return list;
+            return commonService.search(keywords, type, limit, offset);
         } catch (Exception e) {
             e.printStackTrace();
         }

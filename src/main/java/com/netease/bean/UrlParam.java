@@ -13,6 +13,8 @@ public class UrlParam {
 
     public JSONObject params;
 
+    public String cookie;
+
     public UrlParam() {
         this.params = new JSONObject();
     }

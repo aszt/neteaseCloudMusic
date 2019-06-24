@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @Api(description = "用户模块")
 public class UserController {
@@ -32,7 +34,7 @@ public class UserController {
         return null;
     }
 
-    @ApiOperation(value = "邮箱登录（Cookie问题待改）", notes = "用于登录网易云音乐")
+    @ApiOperation(value = "邮箱登录（Cookie有校验，待解决）", notes = "用于登录网易云音乐")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query")
@@ -48,12 +50,11 @@ public class UserController {
     }
 
     @ApiOperation(value = "每日歌曲推荐( 需要登录 )", notes = "根据你的音乐口味生成，每天6:00更新")
-    @ApiImplicitParam(name = "uid", value = "用户 id", required = true, dataType = "String", paramType = "query")
+    @ApiImplicitParam(name = "cookie", value = "登录时返回的cookie信息(巨坑，顺序不能变)", required = true, dataType = "String", paramType = "query")
     @PostMapping("recommendSongs")
-    public String recommendSongs(@RequestParam("uid") String uid) {
+    public String recommendSongs(@RequestParam("cookie") String cookie) {
         try {
-            String list = userService.recommendSongs(uid);
-            return list;
+            return userService.recommendSongs(cookie);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,11 +62,11 @@ public class UserController {
     }
 
     @ApiOperation(value = "每日推荐歌单( 需要登录 )", notes = "可获得每日推荐歌单")
+    @ApiImplicitParam(name = "cookie", value = "登录时返回的cookie信息(巨坑，顺序不能变)", required = true, dataType = "String", paramType = "query")
     @PostMapping("recommendResource")
-    public String recommendResource() {
+    public String recommendResource(@RequestParam("cookie") String cookie) {
         try {
-            String list = userService.recommendResource();
-            return list;
+            return userService.recommendResource(cookie);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,8 +82,7 @@ public class UserController {
     @PostMapping("userPlayList")
     public String userPlayList(@RequestParam("uid") String uid, @RequestParam(value = "limit", defaultValue = "30") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
         try {
-            String list = userService.userPlayList(uid, limit, offset);
-            return list;
+            return userService.userPlayList(uid, limit, offset);
         } catch (Exception e) {
             e.printStackTrace();
         }

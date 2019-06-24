@@ -28,8 +28,7 @@ public class TopListController {
     @PostMapping("topList")
     public String topList(@RequestParam("id") String id, @RequestParam(value = "n", defaultValue = "10") Integer n) {
         try {
-            String list = topListService.topList(id, n);
-            return list;
+            return topListService.topList(id, n);
         } catch (Exception e) {
             e.printStackTrace();
         }

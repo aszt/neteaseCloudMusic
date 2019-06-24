@@ -9,6 +9,7 @@ import com.netease.utils.NewMusicEncrypt;
 import org.springframework.util.DigestUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 排行榜
@@ -45,14 +46,9 @@ public class TopList {
             String password = "tongchongyuan88";
             String secKey = DigestUtils.md5DigestAsHex(password.getBytes());
             String url = "https://music.163.com/weapi/login";
-            UrlParam upp = Api.login(url, phone, secKey);
-            System.out.println("UrlParamPair:" + upp.toString());
-            String req_str = upp.getParams().toJSONString();
-            System.out.println("req_str:" + req_str);
-            HashMap<String, String> data = NewMusicEncrypt.getData(req_str);
-            String list = SendRequest.send(url, data);
+            UrlParam up = Api.login(url, phone, secKey);
+            String list = SendRequest.getMusicData(up);
             System.out.println(list);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,30 +1,31 @@
 package com.netease.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.netease.bean.UrlParam;
 import com.netease.utils.NewMusicEncrypt;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SendRequest {
 
+    /**
+     * 不需要携带cookie
+     *
+     * @param up
+     * @return
+     * @throws Exception
+     */
     public static String getMusicData(UrlParam up) throws Exception {
         String url = up.getUrl();
-        System.out.println("urlParam:" + up.toString());
         String params = up.getParams().toJSONString();
-        System.out.println("params:" + params);
         HashMap<String, String> data = NewMusicEncrypt.getData(params);
+        System.out.println("urlParam:" + up.toString());
+        System.out.println("params:" + params);
         System.out.println("data:" + data);
-        String list = send(url, data, "");
-        System.out.println(list);
-        return list;
-    }
-
-    public static String send(String url, HashMap<String, String> Data, String cookie) throws Exception {
-        Map<String, Object> map = new HashMap<String, Object>();
-        String _ntes_nuid = NewMusicEncrypt.createRandomKey(32);
         Connection.Response
                 response = Jsoup.connect(url)
                 .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0")
@@ -36,16 +37,70 @@ public class SendRequest {
                 .header("DNT", "1")
                 .header("Pragma", "no-cache")
                 .header("Content-Type", "application/x-www-form-urlencoded")
-                .cookie("Cookie", "_ntes_nuid=" + _ntes_nuid + "; __remember_me=true; MUSIC_U=9d0acc3c84eef18ecb3ece59623c0ef36502f48cec432dd78dea31c2c6935a72b686bd74a70dbb8669acbdd29ab03e997955a739ab43dce1; __csrf=b29d08aaa7b8d48ece61cf88881813f0")
-                .data(Data)
+                .data(data)
                 .method(Connection.Method.POST)
                 .ignoreContentType(true)
                 .timeout(10000)
                 .execute();
         String list = response.body();
+
         Map<String, String> cookies = response.cookies();
-        map.put("body", list);
-        map.put("cookies", cookies);
+        if (cookies.size() > 0) {
+            // cookie处理
+            JSONObject resultJsonObject = JSONObject.parseObject(list);
+            StringBuffer sb = new StringBuffer();
+            String remember_me = cookies.get("__remember_me");
+            String music_u = cookies.get("MUSIC_U");
+            String csrf = cookies.get("__csrf");
+            String ntes_nuid = NewMusicEncrypt.createRandomKey(32);
+            sb.append("_ntes_nuid=" + ntes_nuid + ";");
+            sb.append("__remember_me=" + remember_me + ";");
+            sb.append("MUSIC_U=" + music_u + ";");
+            sb.append("__csrf=" + csrf + ";");
+            resultJsonObject.put("cookie", sb);
+            System.out.println(resultJsonObject.toString());
+            return resultJsonObject.toString();
+        } else {
+            System.out.println(list);
+            return list;
+        }
+    }
+
+    /**
+     * 用户数据访问，需携带cookie
+     *
+     * @param up
+     * @return
+     * @throws Exception
+     */
+    public static String getMusicDataByCookie(UrlParam up) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String url = up.getUrl();
+        String params = up.getParams().toJSONString();
+        String cookie = up.getCookie();
+        HashMap<String, String> data = NewMusicEncrypt.getData(params);
+        System.out.println("urlParam:" + up.toString());
+        System.out.println("params:" + params);
+        System.out.println("data:" + data);
+        Connection.Response
+                response = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0")
+                .header("Accept", "*/*")
+                .header("Cache-Control", "no-cache")
+                .header("Connection", "keep-alive")
+                .header("Host", "music.163.com")
+                .header("Accept-Language", "zh-CN,en-US;q=0.7,en;q=0.3")
+                .header("DNT", "1")
+                .header("Pragma", "no-cache")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .cookie("Cookie", cookie)
+                .data(data)
+                .method(Connection.Method.POST)
+                .ignoreContentType(true)
+                .timeout(10000)
+                .execute();
+        String list = response.body();
+        System.out.println(list);
         return list;
     }
 }

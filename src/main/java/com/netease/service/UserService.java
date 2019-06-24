@@ -8,23 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.Map;
+
 @Service
 public class UserService {
 
     @Autowired
     private MusicProperties MP;
-
-    public String recommendSongs(String uid) throws Exception {
-        String url = MP.BASEURL + MP.RECOMMENDSONGS;
-        UrlParam up = Api.recommendSongs(url, uid);
-        return SendRequest.getMusicData(up);
-    }
-
-    public String userPlayList(String uid, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.USERPLAYLIST;
-        UrlParam up = Api.userPlayList(url, uid, limit, offset);
-        return SendRequest.getMusicData(up);
-    }
 
     public String loginCellphone(String phone, String password) throws Exception {
         String url = MP.BASEURL + MP.LOGINCELLPHONE;
@@ -40,9 +30,22 @@ public class UserService {
         return SendRequest.getMusicData(up);
     }
 
-    public String recommendResource() throws Exception {
+    public String recommendSongs(String cookie) throws Exception {
+        String url = MP.BASEURL + MP.RECOMMENDSONGS;
+        UrlParam up = Api.recommendSongs(url, cookie);
+        return SendRequest.getMusicDataByCookie(up);
+    }
+
+    public String recommendResource(String cookie) throws Exception {
         String url = MP.BASEURL + MP.RECOMMENDRESOURCE;
-        UrlParam up = Api.album(url);
+        UrlParam up = Api.recommendResource(url, cookie);
+        return SendRequest.getMusicDataByCookie(up);
+    }
+
+    public String userPlayList(String uid, Integer limit, Integer offset) throws Exception {
+        String url = MP.BASEURL + MP.USERPLAYLIST;
+        UrlParam up = Api.userPlayList(url, uid, limit, offset);
         return SendRequest.getMusicData(up);
     }
+
 }

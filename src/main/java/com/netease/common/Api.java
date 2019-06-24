@@ -59,14 +59,13 @@ public class Api {
         return up;
     }
 
-    public static UrlParam recommendSongs(String url, String uid) {
+    public static UrlParam recommendSongs(String url, String cookie) {
         UrlParam up = new UrlParam();
         up.setUrl(url);
-//        up.addParam("uid", "259679147");
+        up.setCookie(cookie);
         up.addParam("limit", 20);
         up.addParam("offset", 0);
         up.addParam("total", true);
-//        up.addParam("csrf_token", "eaba29ac3fb8730cde19b626d0ee4ed4");
         return up;
     }
 
@@ -106,6 +105,13 @@ public class Api {
         up.addParam("username", email);
         up.addParam("password", password);
         up.addParam("rememberLogin", "true");
+        return up;
+    }
+
+    public static UrlParam recommendResource(String url, String cookie) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.setCookie(cookie);
         return up;
     }
 }
