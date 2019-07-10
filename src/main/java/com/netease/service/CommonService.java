@@ -15,6 +15,16 @@ public class CommonService {
     @Autowired
     private MusicProperties MP;
 
+    public String banner(Integer type) throws Exception {
+        if (type < 0 || type > 3) {
+            return "参数错误";
+        } else {
+            String url = MP.BASEURL + MP.BANNER;
+            UrlParam up = Api.banner(url, type);
+            return SendRequest.getOpenMusicData(up);
+        }
+    }
+
     public String songUrl(String ids, Integer br) throws Exception {
         String url = MP.BASEURL + MP.SONGURL;
         UrlParam up = Api.songUrl(url, ids, br);
@@ -77,4 +87,5 @@ public class CommonService {
         UrlParam up = Api.search(url, keywords, type, limit, offset);
         return SendRequest.getMusicData(up);
     }
+
 }

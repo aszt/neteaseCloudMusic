@@ -9,6 +9,22 @@ public class MusicProperties {
     @Value("${neteaseMusic.baseUrl}")
     public String BASEURL;
 
+    // banner
+    @Value("${neteaseMusic.banner}")
+    public String BANNER;
+
+    // 推荐歌单
+    @Value("${neteaseMusic.personalizedPlayList}")
+    public String PERSONALIZEDPLAYLIST;
+
+    // 最新专辑
+    @Value("${neteaseMusic.discoveryNewAlbum}")
+    public String DISCOVERYNEWALBUM;
+
+    // 最新专辑
+    @Value("${neteaseMusic.playlistDetail}")
+    public String PLAYLISTDETAIL;
+
     // 排行榜
     @Value("${neteaseMusic.topList}")
     public String TOPLIST;

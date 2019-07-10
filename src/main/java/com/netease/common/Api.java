@@ -7,6 +7,34 @@ import java.util.stream.Collectors;
 
 public class Api {
 
+    public static UrlParam banner(String url, Integer type) {
+        String[] typeList = {"pc", "android", "iphone", "ipad"};
+        url += "?clientType=" + typeList[type];
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+//        up.addParam("clientType", typeList[type]);
+        return up;
+    }
+
+    public static UrlParam personalized(String url, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+        up.addParam("total", true);
+        up.addParam("n", 1000);
+        return up;
+    }
+
+    public static UrlParam playlistDetail(String url, String id, Integer s) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("id", id);
+        up.addParam("n", 100000);
+        up.addParam("s", s);
+        return up;
+    }
+
     public static UrlParam topList(String url, String id, Integer n) {
         UrlParam up = new UrlParam();
         up.setUrl(url);
@@ -114,4 +142,5 @@ public class Api {
         up.setCookie(cookie);
         return up;
     }
+
 }

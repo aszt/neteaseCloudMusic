@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,18 @@ public class CommonController {
 
     @Autowired
     private CommonService commonService;
+
+    @ApiOperation(value = "banner", notes = " 获取 banner( 轮播图 ) 数据")
+    @ApiImplicitParam(name = "type", value = "资源类型,默认为 0（0:pc、1:android、2:iphone、3:ipad）", required = false, dataType = "int", paramType = "query")
+    @GetMapping("banner")
+    public String banner(@RequestParam(value = "type", defaultValue = "0") Integer type) {
+        try {
+            return commonService.banner(type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @ApiOperation(value = "获取音乐Url", notes = " 传入的音乐 id( 可多个 , 用逗号隔开 ), 可以获取对应的音乐的 url，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
     @ApiImplicitParams({
@@ -37,7 +50,7 @@ public class CommonController {
 
     @ApiOperation(value = "获取歌词", notes = " 传入音乐 id 可获得对应音乐的歌词，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
     @ApiImplicitParam(name = "id", value = "音乐 id", required = true, dataType = "String", paramType = "query")
-    @PostMapping("lyric")
+    @GetMapping("lyric")
     public String lyric(@RequestParam("id") String id) {
         try {
             return commonService.lyric(id);
