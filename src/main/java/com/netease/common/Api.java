@@ -143,4 +143,44 @@ public class Api {
         return up;
     }
 
+    public static UrlParam mvDetail(String url, String mvid) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("id", mvid);
+        return up;
+    }
+
+    public static UrlParam mvUrl(String url, String id) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("id", id);
+        up.addParam("r", 1080);
+        return up;
+    }
+
+    public static UrlParam videoUrl(String url, String id) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("ids", "[" + id + "]");
+        up.addParam("resolution", 1080);
+        return up;
+    }
+
+    public static UrlParam relatedAllvideo(String url, String id) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("id", id);
+        up.addParam("type", 0);
+        return up;
+    }
+
+    public static UrlParam commentMv(String url, String id, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("rid", id);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+        up.addParam("beforeTime", 0);
+        return up;
+    }
 }

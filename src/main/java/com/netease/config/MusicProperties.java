@@ -77,4 +77,32 @@ public class MusicProperties {
     @Value("${neteaseMusic.recommendResource}")
     public String RECOMMENDRESOURCE;
 
+    // MV详情
+    @Value("${neteaseMusic.mvDetail}")
+    public String MVDETAIL;
+
+    // 视频详情
+    @Value("${neteaseMusic.videoDetail}")
+    public String VIDEODETAIL;
+
+    // MV链接
+    @Value("${neteaseMusic.mvUrl}")
+    public String MVURL;
+
+    // 视频链接
+    @Value("${neteaseMusic.videoUrl}")
+    public String VIDEOURL;
+
+    // 相关视频
+    @Value("${neteaseMusic.relatedAllvideo}")
+    public String RELATEDALLVIDEO;
+
+    // MV评论
+    @Value("${neteaseMusic.commentMv}")
+    public String COMMENTMV;
+
+    // 视频评论
+    @Value("${neteaseMusic.commentVideo}")
+    public String COMMENTVIDEO;
+
 }
