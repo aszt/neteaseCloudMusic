@@ -33,67 +33,12 @@ public class CommonController {
         return null;
     }
 
-    @ApiOperation(value = "获取音乐Url", notes = " 传入的音乐 id( 可多个 , 用逗号隔开 ), 可以获取对应的音乐的 url，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "ids", value = "音乐 id", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "br", value = "码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推", required = false, dataType = "int", paramType = "query")
-    })
-    @PostMapping("songUrl")
-    public String songUrl(@RequestParam("ids") String ids, @RequestParam(value = "br", defaultValue = "999000") Integer br) {
-        try {
-            return commonService.songUrl(ids, br);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @ApiOperation(value = "获取歌词", notes = " 传入音乐 id 可获得对应音乐的歌词，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
-    @ApiImplicitParam(name = "id", value = "音乐 id", required = true, dataType = "String", paramType = "query")
-    @GetMapping("lyric")
-    public String lyric(@RequestParam("id") String id) {
-        try {
-            return commonService.lyric(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @ApiOperation(value = "获取歌曲详情", notes = " 传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情，例如：1365393542-孤身、1369601580-祝你爱我到天荒地老等")
-    @ApiImplicitParam(name = "ids", value = "音乐 id", required = true, dataType = "String", paramType = "query")
-    @PostMapping("songDetail")
-    public String songDetail(@RequestParam("ids") String ids) {
-        try {
-            return commonService.songDetail(ids);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @ApiOperation(value = "获取专辑内容", notes = " 传入专辑 id, 可获得专辑内容,例如：79130968-孤身")
     @ApiImplicitParam(name = "id", value = "专辑 id", required = true, dataType = "String", paramType = "query")
     @PostMapping("album")
     public String album(@RequestParam("id") String id) {
         try {
             return commonService.album(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @ApiOperation(value = "歌曲评论", notes = " 传入音乐 id 和 limit 参数 , 可获得该音乐的15条热门评论及limit条最新评论,例如：1365393542-孤身")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "音乐 id", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "limit", value = "取出评论数量 , 默认为 20", required = false, dataType = "int", paramType = "query"),
-            @ApiImplicitParam(name = "offset", value = "偏移数量 , 用于分页， 默认为 0", required = false, dataType = "int", paramType = "query")
-    })
-    @PostMapping("commentMusic")
-    public String commentMusic(@RequestParam("id") String id, @RequestParam(value = "limit", defaultValue = "20") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
-        try {
-            return commonService.commentMusic(id, limit, offset);
         } catch (Exception e) {
             e.printStackTrace();
         }
