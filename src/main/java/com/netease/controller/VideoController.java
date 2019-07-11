@@ -60,7 +60,7 @@ public class VideoController {
     }
 
     // 获取videoUrl
-    @ApiOperation(value = "获取视频播放地址", notes = " 传入视频 id,可获取视频播放地址")
+    @ApiOperation(value = "获取视频播放地址", notes = " 传入视频 id,可获取视频播放地址,3C10B7D020D07031B595235C790737A4")
     @ApiImplicitParam(name = "id", value = "视频 id", required = true, dataType = "String", paramType = "query")
     @GetMapping("video/url")
     public String videoUrl(@RequestParam("id") String id) {

@@ -3,6 +3,7 @@ package com.netease.common;
 import com.netease.bean.UrlParam;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Api {
@@ -161,16 +162,22 @@ public class Api {
     public static UrlParam videoUrl(String url, String id) {
         UrlParam up = new UrlParam();
         up.setUrl(url);
-        up.addParam("ids", "[" + id + "]");
+        up.addParam("ids", "[\"" + id + "\"]");
         up.addParam("resolution", 1080);
         return up;
     }
 
     public static UrlParam relatedAllvideo(String url, String id) {
         UrlParam up = new UrlParam();
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        boolean matches = pattern.matcher(id).matches();
+        if (matches) {
+            up.addParam("type", 0);
+        } else {
+            up.addParam("type", 1);
+        }
         up.setUrl(url);
         up.addParam("id", id);
-        up.addParam("type", 0);
         return up;
     }
 
@@ -181,6 +188,20 @@ public class Api {
         up.addParam("limit", limit);
         up.addParam("offset", offset);
         up.addParam("beforeTime", 0);
+        return up;
+    }
+
+    public static UrlParam searchSuggest(String url, String keywords) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("s", keywords);
+        return up;
+    }
+
+    public static UrlParam searchHot(String url) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("type", 1111);
         return up;
     }
 }

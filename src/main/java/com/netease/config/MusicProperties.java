@@ -105,4 +105,16 @@ public class MusicProperties {
     @Value("${neteaseMusic.commentVideo}")
     public String COMMENTVIDEO;
 
+    // 搜索建议
+    @Value("${neteaseMusic.searchSuggest}")
+    public String SEARCHSUGGEST;
+
+    // 热搜列表(简略)
+    @Value("${neteaseMusic.searchHot}")
+    public String SEARCHHOT;
+
+    // 热搜列表(详细)
+    @Value("${neteaseMusic.searchHotDetail}")
+    public String SEARCHHOTDETAIL;
+
 }

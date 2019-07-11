@@ -21,7 +21,7 @@ public class CommonService {
         } else {
             String url = MP.BASEURL + MP.BANNER;
             UrlParam up = Api.banner(url, type);
-            return SendRequest.getOpenMusicData(up);
+            return SendRequest.getMusicData(up);
         }
     }
 
@@ -55,12 +55,6 @@ public class CommonService {
             return "类型错误！";
         }
         UrlParam up = Api.commentMusic(url, id, limit, offset);
-        return SendRequest.getMusicData(up);
-    }
-
-    public String search(String keywords, Integer type, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.SEARCH;
-        UrlParam up = Api.search(url, keywords, type, limit, offset);
         return SendRequest.getMusicData(up);
     }
 

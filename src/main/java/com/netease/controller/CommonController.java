@@ -62,21 +62,4 @@ public class CommonController {
         return null;
     }
 
-    @ApiOperation(value = "搜索", notes = "传入搜索关键词可以搜索该音乐 / 专辑 / 歌手 / 歌单 / 用户 , 关键词可以多个 , 以空格隔开 , 如：周杰伦 搁浅")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "keywords", value = "关键词", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "type", value = "搜索类型：默认为单曲，1: 单曲、100: 歌手、10: 专辑、1014: 视频、1000: 歌单、1006: 歌词、1009: 主播电台、1002: 用户", required = false, dataType = "int", paramType = "query"),
-            @ApiImplicitParam(name = "limit", value = "返回数量 , 默认为 30", required = false, dataType = "int", paramType = "query"),
-            @ApiImplicitParam(name = "offset", value = "偏移数量 , 用于分页，如 :( 页数 -1)*30， 默认为 0", required = false, dataType = "int", paramType = "query")
-    })
-    @PostMapping("search")
-    public String search(@RequestParam("keywords") String keywords, @RequestParam(value = "type", defaultValue = "1") Integer type, @RequestParam(value = "limit", defaultValue = "30") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
-        try {
-            return commonService.search(keywords, type, limit, offset);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 }

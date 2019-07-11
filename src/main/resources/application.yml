@@ -2,7 +2,7 @@ server:
   port: 8088
 # 请求路径
 neteaseMusic:
-  baseUrl: "http://music.163.com/"
+  baseUrl: "https://music.163.com/"
   banner: "api/v2/banner/get"
   personalizedPlayList: "weapi/personalized/playlist"
   discoveryNewAlbum: "api/discovery/newAlbum"
@@ -16,7 +16,8 @@ neteaseMusic:
   commentHot: "weapi/v1/resource/hotcomments"
   recommendSongs: "weapi/v2/discovery/recommend/songs"
   userPlayList: "weapi/user/playlist"
-  search: "weapi/cloudsearch/get/web"
+#  search: "weapi/cloudsearch/get/web"
+  search: "weapi/search/get"
   loginCellphone: "weapi/login/cellphone"
   login: "weapi/login"
   recommendResource: "weapi/v1/discovery/recommend/resource"
@@ -27,3 +28,6 @@ neteaseMusic:
   relatedAllvideo: "weapi/cloudvideo/v1/allvideo/rcmd"
   commentMv: "weapi/v1/resource/comments/R_MV_5_"
   commentVideo: "weapi/v1/resource/comments/R_VI_62_"
+  searchSuggest: "weapi/search/suggest/"
+  searchHot: "weapi/search/hot"
+  searchHotDetail: "weapi/hotsearchlist/get"
