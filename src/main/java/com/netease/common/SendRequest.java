@@ -2,6 +2,7 @@ package com.netease.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.netease.bean.UrlParam;
+import com.netease.utils.JSSecret;
 import com.netease.utils.NewMusicEncrypt;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -13,35 +14,6 @@ import java.util.Map;
 public class SendRequest {
 
     /**
-     * 获取公开数据暂写）
-     * @param up
-     * @return
-     * @throws Exception
-     */
-    public static String getOpenMusicData(UrlParam up) throws Exception {
-        String url = up.getUrl();
-        System.out.println("url:" + url);
-        Connection.Response
-                response = Jsoup.connect(url)
-                .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0")
-                .header("Accept", "*/*")
-                .header("Cache-Control", "no-cache")
-                .header("Connection", "keep-alive")
-                .header("Host", "music.163.com")
-                .header("Accept-Language", "zh-CN,en-US;q=0.7,en;q=0.3")
-                .header("DNT", "1")
-                .header("Pragma", "no-cache")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .method(Connection.Method.POST)
-                .ignoreContentType(true)
-                .timeout(10000)
-                .execute();
-        String list = response.body();
-        System.out.println(list);
-        return list;
-    }
-
-    /**
      * 不需要携带cookie
      *
      * @param up
@@ -50,11 +22,12 @@ public class SendRequest {
      */
     public static String getMusicData(UrlParam up) throws Exception {
         String url = up.getUrl();
+        System.out.println(url);
         String params = up.getParams().toJSONString();
         HashMap<String, String> data = NewMusicEncrypt.getData(params);
-        System.out.println("urlParam:" + up.toString());
-        System.out.println("params:" + params);
-        System.out.println("data:" + data);
+//        System.out.println("urlParam:" + up.toString());
+//        System.out.println("params:" + params);
+//        System.out.println("data:" + data);
         Connection.Response
                 response = Jsoup.connect(url)
                 .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:57.0) Gecko/20100101 Firefox/57.0")
@@ -62,6 +35,7 @@ public class SendRequest {
                 .header("Cache-Control", "no-cache")
                 .header("Connection", "keep-alive")
                 .header("Host", "music.163.com")
+                .header("Referer", "https://music.163.com")
                 .header("Accept-Language", "zh-CN,en-US;q=0.7,en;q=0.3")
                 .header("DNT", "1")
                 .header("Pragma", "no-cache")
@@ -90,7 +64,7 @@ public class SendRequest {
             System.out.println(resultJsonObject.toString());
             return resultJsonObject.toString();
         } else {
-            System.out.println(list);
+//            System.out.println(list);
             return list;
         }
     }
@@ -118,6 +92,7 @@ public class SendRequest {
                 .header("Cache-Control", "no-cache")
                 .header("Connection", "keep-alive")
                 .header("Host", "music.163.com")
+                .header("Referer", "https://music.163.com")
                 .header("Accept-Language", "zh-CN,en-US;q=0.7,en;q=0.3")
                 .header("DNT", "1")
                 .header("Pragma", "no-cache")

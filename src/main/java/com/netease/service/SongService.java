@@ -36,4 +36,16 @@ public class SongService {
         UrlParam up = Api.commentMusic(url, id, limit, offset);
         return SendRequest.getMusicData(up);
     }
+
+    public String personalizedNewsong() throws Exception {
+        String url = MP.BASEURL + MP.PERSONALIZEDNEWSONG;
+        UrlParam up = Api.personalizedNewsong(url);
+        return SendRequest.getMusicData(up);
+    }
+
+    public String topSong(Integer type) throws Exception {
+        String url = MP.BASEURL + MP.TOPSONG;
+        UrlParam up = Api.topSong(url, type);
+        return SendRequest.getMusicData(up);
+    }
 }

@@ -21,4 +21,10 @@ public class TopListService {
         UrlParam up = Api.topList(url, id, n);
         return SendRequest.getMusicData(up);
     }
+
+    public String toplistDetail() throws Exception {
+        String url = MP.BASEURL + MP.TOPLISTDETAIL;
+        UrlParam up = Api.open(url);
+        return SendRequest.getMusicData(up);
+    }
 }

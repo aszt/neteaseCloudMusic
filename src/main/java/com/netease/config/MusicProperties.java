@@ -117,4 +117,28 @@ public class MusicProperties {
     @Value("${neteaseMusic.searchHotDetail}")
     public String SEARCHHOTDETAIL;
 
+
+    // 推荐新音乐
+    @Value("${neteaseMusic.personalizedNewsong}")
+    public String PERSONALIZEDNEWSONG;
+
+    // 新歌速递
+    @Value("${neteaseMusic.topSong}")
+    public String TOPSONG;
+
+    // 歌单评论
+    @Value("${neteaseMusic.commentPlayList}")
+    public String COMMENTPLAYLIST;
+
+    // 所有榜单内容摘要
+    @Value("${neteaseMusic.toplistDetail}")
+    public String TOPLISTDETAIL;
+
+    // 全部歌单分类
+    @Value("${neteaseMusic.playlistCatlist}")
+    public String PLAYLISTCATLIST;
+
+    // 全部歌单分类
+    @Value("${neteaseMusic.topPlaylist}")
+    public String TOPPLAYLIST;
 }

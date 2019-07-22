@@ -204,4 +204,46 @@ public class Api {
         up.addParam("type", 1111);
         return up;
     }
+
+    public static UrlParam personalizedNewsong(String url) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("type", "recommend");
+        return up;
+    }
+
+    public static UrlParam topSong(String url, Integer type) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("areaId", type);
+        up.addParam("total", true);
+        return up;
+    }
+
+    public static UrlParam commentPlaylist(String url, String id, Integer limit, Integer offset, String before) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("rid", id);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+        up.addParam("beforeTime", before);
+        return up;
+    }
+
+    public static UrlParam open(String url) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        return up;
+    }
+
+    public static UrlParam topPlaylist(String url, String order, String cat, Integer limit, Integer offset) {
+        UrlParam up = new UrlParam();
+        up.setUrl(url);
+        up.addParam("cat", cat);
+        up.addParam("order", order);
+        up.addParam("limit", limit);
+        up.addParam("offset", offset);
+        up.addParam("total", true);
+        return up;
+    }
 }

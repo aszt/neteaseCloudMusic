@@ -78,4 +78,29 @@ public class SongController {
         }
         return null;
     }
+
+    // 推荐新音乐
+    @ApiOperation(value = "推荐新音乐", notes = " 用此接口 , 可获取推荐新音乐")
+    @GetMapping("personalized/newsong")
+    public String personalizedNewsong() {
+        try {
+            return songService.personalizedNewsong();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 新歌速递
+    @ApiOperation(value = "新歌速递", notes = " 用此接口 , 可获取新歌速递")
+    @ApiImplicitParam(name = "type", value = "地区类型 id,(全部:0、华语:7、欧美:96、日本:8、韩国:16)", required = false, dataType = "int", paramType = "query")
+    @GetMapping("top/song")
+    public String topSong(@RequestParam(value = "type", defaultValue = "0") Integer type) {
+        try {
+            return songService.topSong(type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
