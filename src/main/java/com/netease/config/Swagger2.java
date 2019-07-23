@@ -33,7 +33,7 @@ public class Swagger2 {
                 .title("网易云音乐 API")
                 .description("网易云音乐 Java API service")
                 .termsOfServiceUrl("https://music.163.com/")
-                .contact(new Contact("童重远", "https://aszt.github.io/", "tongchongyuan@163.com"))
+                .contact(new Contact("tcy", "https://aszt.github.io/", "tongchongyuan@163.com"))
                 .version("1.0")
                 .build();
     }
