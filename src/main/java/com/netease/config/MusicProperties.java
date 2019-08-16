@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class MusicProperties {
 
+    @Value("${neteaseMusic.cookieName}")
+    public String COOKIENAME;
+
     @Value("${neteaseMusic.baseUrl}")
     public String BASEURL;
 

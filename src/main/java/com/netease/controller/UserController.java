@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @RestController
@@ -24,10 +24,13 @@ public class UserController {
             @ApiImplicitParam(name = "phone", value = "手机号码", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query")
     })
-    @PostMapping("loginCellphone")
-    public String loginCellphone(@RequestParam("phone") String phone, @RequestParam("password") String password) {
+    @GetMapping("loginCellphone")
+    public String loginCellphone(@RequestParam("phone") String phone,
+                                 @RequestParam("password") String password,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) {
         try {
-            return userService.loginCellphone(phone, password);
+            return userService.loginCellphone(phone, password, request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,7 +42,7 @@ public class UserController {
             @ApiImplicitParam(name = "email", value = "邮箱", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "String", paramType = "query")
     })
-    @PostMapping("login")
+    @GetMapping("login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password) {
         try {
             return userService.login(email, password);
@@ -50,11 +53,11 @@ public class UserController {
     }
 
     @ApiOperation(value = "每日歌曲推荐( 需要登录 )", notes = "根据你的音乐口味生成，每天6:00更新")
-    @ApiImplicitParam(name = "cookie", value = "登录时返回的cookie信息(巨坑，顺序不能变)", required = true, dataType = "String", paramType = "query")
-    @PostMapping("recommendSongs")
-    public String recommendSongs(@RequestParam("cookie") String cookie) {
+    @ApiImplicitParam(name = "token", value = "不用管", required = false, dataType = "String", paramType = "query")
+    @GetMapping("recommendSongs")
+    public String recommendSongs(@CookieValue("WY_TOKEN") String token) {
         try {
-            return userService.recommendSongs(cookie);
+            return userService.recommendSongs(token);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,11 +65,11 @@ public class UserController {
     }
 
     @ApiOperation(value = "每日推荐歌单( 需要登录 )", notes = "可获得每日推荐歌单")
-    @ApiImplicitParam(name = "cookie", value = "登录时返回的cookie信息(巨坑，顺序不能变)", required = true, dataType = "String", paramType = "query")
-    @PostMapping("recommendResource")
-    public String recommendResource(@RequestParam("cookie") String cookie) {
+    @ApiImplicitParam(name = "token", value = "不用管", required = false, dataType = "String", paramType = "query")
+    @GetMapping("recommendResource")
+    public String recommendResource(@CookieValue("WY_TOKEN") String token) {
         try {
-            return userService.recommendResource(cookie);
+            return userService.recommendResource(token);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,7 +82,7 @@ public class UserController {
             @ApiImplicitParam(name = "limit", value = "取出数量 , 默认为 30", required = false, dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "offset", value = "偏移数量 , 用于分页， 默认为 0", required = false, dataType = "int", paramType = "query")
     })
-    @PostMapping("userPlayList")
+    @GetMapping("userPlayList")
     public String userPlayList(@RequestParam("uid") String uid, @RequestParam(value = "limit", defaultValue = "30") Integer limit, @RequestParam(value = "offset", defaultValue = "0") Integer offset) {
         try {
             return userService.userPlayList(uid, limit, offset);
