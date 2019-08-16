@@ -19,10 +19,10 @@ import java.util.Map;
 public class UserService {
 
     @Autowired
-    private MusicProperties MP;
+    private MusicProperties mp;
 
     public String loginCellphone(String phone, String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String url = MP.BASEURL + MP.LOGINCELLPHONE;
+        String url = mp.baseUrl + mp.loginCellphone;
         String encryptionPw = DigestUtils.md5DigestAsHex(password.getBytes());
         UrlParam up = Api.loginCellphone(url, phone, encryptionPw);
         String musicData = SendRequest.getMusicData(up);
@@ -30,7 +30,7 @@ public class UserService {
         if (!StringUtils.isEmpty(result.getString("cookie"))) {
             // 登录成功
             CookieUtils.newBuilder(response).httpOnly().request(request)
-                    .build(MP.COOKIENAME, result.getString("cookie"));
+                    .build(mp.cookieName, result.getString("cookie"));
             result.remove("cookie");
             return result.toString();
         }
@@ -38,26 +38,26 @@ public class UserService {
     }
 
     public String login(String email, String password) throws Exception {
-        String url = MP.BASEURL + MP.LOGIN;
+        String url = mp.baseUrl + mp.login;
         String encryptionPw = DigestUtils.md5DigestAsHex(password.getBytes());
         UrlParam up = Api.login(url, email, encryptionPw);
         return SendRequest.getMusicData(up);
     }
 
     public String recommendSongs(String cookie) throws Exception {
-        String url = MP.BASEURL + MP.RECOMMENDSONGS;
+        String url = mp.baseUrl + mp.recommendSongs;
         UrlParam up = Api.recommendSongs(url, cookie);
         return SendRequest.getMusicDataByCookie(up);
     }
 
     public String recommendResource(String cookie) throws Exception {
-        String url = MP.BASEURL + MP.RECOMMENDRESOURCE;
+        String url = mp.baseUrl + mp.recommendResource;
         UrlParam up = Api.recommendResource(url, cookie);
         return SendRequest.getMusicDataByCookie(up);
     }
 
     public String userPlayList(String uid, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.USERPLAYLIST;
+        String url = mp.baseUrl + mp.userPlayList;
         UrlParam up = Api.userPlayList(url, uid, limit, offset);
         return SendRequest.getMusicData(up);
     }

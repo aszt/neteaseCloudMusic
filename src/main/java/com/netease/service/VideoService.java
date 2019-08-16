@@ -11,46 +11,46 @@ import org.springframework.stereotype.Service;
 public class VideoService {
 
     @Autowired
-    private MusicProperties MP;
+    private MusicProperties mp;
 
     public String mvDetail(String mvid) throws Exception {
-        String url = MP.BASEURL + MP.MVDETAIL;
+        String url = mp.baseUrl + mp.mvDetail;
         UrlParam up = Api.mvDetail(url, mvid);
         return SendRequest.getMusicData(up);
     }
 
     public String videoDetail(String id) throws Exception {
-        String url = MP.BASEURL + MP.VIDEODETAIL;
+        String url = mp.baseUrl + mp.videoDetail;
         UrlParam up = Api.mvDetail(url, id);
         return SendRequest.getMusicData(up);
     }
 
     public String mvUrl(String id) throws Exception {
-        String url = MP.BASEURL + MP.MVURL;
+        String url = mp.baseUrl + mp.mvUrl;
         UrlParam up = Api.mvUrl(url, id);
         return SendRequest.getMusicData(up);
     }
 
     public String videoUrl(String id) throws Exception {
-        String url = MP.BASEURL + MP.VIDEOURL;
+        String url = mp.baseUrl + mp.videoUrl;
         UrlParam up = Api.videoUrl(url, id);
         return SendRequest.getMusicData(up);
     }
 
     public String relatedAllvideo(String id) throws Exception {
-        String url = MP.BASEURL + MP.RELATEDALLVIDEO;
+        String url = mp.baseUrl + mp.relatedAllvideo;
         UrlParam up = Api.relatedAllvideo(url, id);
         return SendRequest.getMusicData(up);
     }
 
     public String commentMv(String id, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.COMMENTMV + id;
+        String url = mp.baseUrl + mp.commentMv + id;
         UrlParam up = Api.commentMv(url, id, limit, offset);
         return SendRequest.getMusicData(up);
     }
 
     public String commentVideo(String id, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.COMMENTVIDEO + id;
+        String url = mp.baseUrl + mp.commentVideo + id;
         UrlParam up = Api.commentMv(url, id, limit, offset);
         return SendRequest.getMusicData(up);
     }

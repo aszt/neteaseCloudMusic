@@ -14,16 +14,16 @@ import java.util.HashMap;
 public class TopListService {
 
     @Autowired
-    private MusicProperties MP;
+    private MusicProperties mp;
 
     public String topList(String id, Integer n) throws Exception {
-        String url = MP.BASEURL + MP.TOPLIST;
+        String url = mp.baseUrl + mp.topList;
         UrlParam up = Api.topList(url, id, n);
         return SendRequest.getMusicData(up);
     }
 
     public String toplistDetail() throws Exception {
-        String url = MP.BASEURL + MP.TOPLISTDETAIL;
+        String url = mp.baseUrl + mp.toplistDetail;
         UrlParam up = Api.open(url);
         return SendRequest.getMusicData(up);
     }

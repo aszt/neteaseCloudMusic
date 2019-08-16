@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AlbumService {
     @Autowired
-    private MusicProperties MP;
+    private MusicProperties mp;
 
     public String newAlbum() throws Exception {
-        String url = MP.BASEURL + MP.DISCOVERYNEWALBUM;
+        String url = mp.baseUrl + mp.discoveryNewAlbum;
         UrlParam up = Api.album(url);
         return SendRequest.getMusicData(up);
     }

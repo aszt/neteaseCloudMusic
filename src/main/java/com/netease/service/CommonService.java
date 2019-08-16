@@ -13,26 +13,26 @@ import java.util.HashMap;
 public class CommonService {
 
     @Autowired
-    private MusicProperties MP;
+    private MusicProperties mp;
 
     public String banner(Integer type) throws Exception {
         if (type < 0 || type > 3) {
             return "参数错误";
         } else {
-            String url = MP.BASEURL + MP.BANNER;
+            String url = mp.baseUrl + mp.banner;
             UrlParam up = Api.banner(url, type);
             return SendRequest.getMusicData(up);
         }
     }
 
     public String album(String id) throws Exception {
-        String url = MP.BASEURL + MP.ALBUM + "/" + id;
+        String url = mp.baseUrl + mp.album + "/" + id;
         UrlParam up = Api.album(url);
         return SendRequest.getMusicData(up);
     }
 
     public String commentHot(Integer type, String id, Integer limit, Integer offset) throws Exception {
-        String url = MP.BASEURL + MP.COMMENTHOT;
+        String url = mp.baseUrl + mp.commentHot;
         if (type == 0) {
             // 歌曲
             url += "/R_SO_4_" + id;
